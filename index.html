@@ -764,7 +764,22 @@
 
           <!-- Answer Options -->
           <div class="flex flex-col gap-2.5 mt-2" id="quiz-answers-container">
-            <!-- Buttons injected via JS -->
+            <button class="w-full p-3 rounded-xl border-2 border-outline-variant/60 bg-surface-container-lowest font-body-sm text-[14px] text-primary font-medium text-left flex items-center justify-between hover:border-secondary hover:bg-surface-container transition-all active:scale-[0.99]">
+              <span>Kingdom of Kush</span>
+              <span class="w-6 h-6 rounded-full border border-outline flex items-center justify-center font-label-code text-[11px] text-outline flex-shrink-0">A</span>
+            </button>
+            <button class="w-full p-3 rounded-xl border-2 border-outline-variant/60 bg-surface-container-lowest font-body-sm text-[14px] text-primary font-medium text-left flex items-center justify-between hover:border-secondary hover:bg-surface-container transition-all active:scale-[0.99]">
+              <span>Roman Empire</span>
+              <span class="w-6 h-6 rounded-full border border-outline flex items-center justify-center font-label-code text-[11px] text-outline flex-shrink-0">B</span>
+            </button>
+            <button class="w-full p-3 rounded-xl border-2 border-outline-variant/60 bg-surface-container-lowest font-body-sm text-[14px] text-primary font-medium text-left flex items-center justify-between hover:border-secondary hover:bg-surface-container transition-all active:scale-[0.99]">
+              <span>Aksumite Empire</span>
+              <span class="w-6 h-6 rounded-full border border-outline flex items-center justify-center font-label-code text-[11px] text-outline flex-shrink-0">C</span>
+            </button>
+            <button class="w-full p-3 rounded-xl border-2 border-outline-variant/60 bg-surface-container-lowest font-body-sm text-[14px] text-primary font-medium text-left flex items-center justify-between hover:border-secondary hover:bg-surface-container transition-all active:scale-[0.99]">
+              <span>Ottoman Empire</span>
+              <span class="w-6 h-6 rounded-full border border-outline flex items-center justify-center font-label-code text-[11px] text-outline flex-shrink-0">D</span>
+            </button>
           </div>
 
           <!-- Feedback Box -->
@@ -1086,6 +1101,12 @@
 
         if (pageTitle && titleMap[tabId]) {
           pageTitle.textContent = titleMap[tabId];
+        }
+
+        if (tabId === 'quiz') {
+          if (typeof renderQuestion === 'function') {
+            renderQuestion();
+          }
         }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
