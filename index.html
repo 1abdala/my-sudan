@@ -1069,7 +1069,168 @@
       ];
 
       /* ----------------------------------------------------
-         2. TAB NAVIGATION SYSTEM
+         2. INTERACTIVE QUIZ ENGINE & CERTIFICATE
+      ---------------------------------------------------- */
+      const quizIntroStep = document.getElementById('quiz-intro-step');
+      const quizActiveStep = document.getElementById('quiz-active-step');
+      const quizCompletionStep = document.getElementById('quiz-completion-step');
+      
+      const startQuizBtn = document.getElementById('start-quiz-btn');
+      const retakeQuizBtn = document.getElementById('retake-quiz-btn');
+      const shareScoreBtn = document.getElementById('share-score-btn');
+
+      const quizProgressText = document.getElementById('quiz-progress-text');
+      const quizScoreLive = document.getElementById('quiz-score-live');
+      const quizProgressBar = document.getElementById('quiz-progress-bar');
+      const quizQuestionSource = document.getElementById('quiz-question-source');
+      const quizQuestionText = document.getElementById('quiz-question-text');
+      const quizAnswersContainer = document.getElementById('quiz-answers-container');
+      const quizFeedbackBox = document.getElementById('quiz-feedback-box');
+      const quizFeedbackTitle = document.getElementById('quiz-feedback-title');
+      const quizFeedbackExplanation = document.getElementById('quiz-feedback-explanation');
+      const quizNextBtn = document.getElementById('quiz-next-btn');
+
+      let currentQuestionIdx = 0;
+      let score = 0;
+      let answered = false;
+
+      function startQuiz() {
+        currentQuestionIdx = 0;
+        score = 0;
+        answered = false;
+
+        if (quizIntroStep) quizIntroStep.classList.add('hidden');
+        if (quizCompletionStep) quizCompletionStep.classList.add('hidden');
+        if (quizActiveStep) quizActiveStep.classList.remove('hidden');
+
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        answered = false;
+        const q = quizQuestions[currentQuestionIdx];
+        if (!q) return;
+
+        if (quizProgressText) quizProgressText.textContent = `QUESTION ${String(currentQuestionIdx + 1).padStart(2, '0')} / ${String(quizQuestions.length).padStart(2, '0')}`;
+        if (quizScoreLive) quizScoreLive.textContent = `SCORE: ${score}`;
+        
+        const pct = ((currentQuestionIdx + 1) / quizQuestions.length) * 100;
+        if (quizProgressBar) quizProgressBar.style.width = `${pct}%`;
+
+        if (quizQuestionSource) quizQuestionSource.textContent = `${q.source.toUpperCase()} ARCHIVE`;
+        if (quizQuestionText) quizQuestionText.textContent = q.question;
+
+        if (quizFeedbackBox) quizFeedbackBox.classList.add('hidden');
+        if (quizNextBtn) quizNextBtn.classList.add('hidden');
+        if (quizAnswersContainer) quizAnswersContainer.innerHTML = '';
+
+        q.answers.forEach((ans, idx) => {
+          const btn = document.createElement('button');
+          btn.className = "w-full p-3 rounded-xl border-2 border-outline-variant/60 bg-surface-container-lowest font-body-sm text-[14px] text-primary font-medium text-left flex items-center justify-between hover:border-secondary hover:bg-surface-container transition-all active:scale-[0.99]";
+          btn.innerHTML = `
+            <span>${ans}</span>
+            <span class="w-6 h-6 rounded-full border border-outline flex items-center justify-center font-label-code text-[11px] text-outline flex-shrink-0">${String.fromCharCode(65 + idx)}</span>
+          `;
+          btn.addEventListener('click', () => handleAnswer(idx, btn));
+          if (quizAnswersContainer) quizAnswersContainer.appendChild(btn);
+        });
+      }
+
+      function handleAnswer(selectedIdx, clickedBtn) {
+        if (answered) return;
+        answered = true;
+
+        const q = quizQuestions[currentQuestionIdx];
+        const buttons = quizAnswersContainer.querySelectorAll('button');
+
+        buttons.forEach(b => b.disabled = true);
+
+        if (selectedIdx === q.correct) {
+          score++;
+          if (quizScoreLive) quizScoreLive.textContent = `SCORE: ${score}`;
+          clickedBtn.className = "w-full p-3 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-950 font-body-sm text-[14px] font-semibold text-left flex items-center justify-between shadow-sm";
+          if (quizFeedbackTitle) {
+            quizFeedbackTitle.className = "flex items-center gap-1.5 font-label-stamp text-[11px] font-bold text-emerald-700";
+            quizFeedbackTitle.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span> CORRECT ✓`;
+          }
+          if (quizFeedbackBox) quizFeedbackBox.className = "flex flex-col gap-1 p-3 rounded-lg border border-emerald-300 bg-emerald-50/80 text-[13px] font-body-sm mt-2";
+        } else {
+          clickedBtn.className = "w-full p-3 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-950 font-body-sm text-[14px] font-medium text-left flex items-center justify-between";
+          
+          if (buttons[q.correct]) {
+            buttons[q.correct].className = "w-full p-3 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-950 font-body-sm text-[14px] font-semibold text-left flex items-center justify-between";
+          }
+
+          if (quizFeedbackTitle) {
+            quizFeedbackTitle.className = "flex items-center gap-1.5 font-label-stamp text-[11px] font-bold text-rose-700";
+            quizFeedbackTitle.innerHTML = `<span class="material-symbols-outlined text-[16px]">cancel</span> NOT QUITE!`;
+          }
+          if (quizFeedbackBox) quizFeedbackBox.className = "flex flex-col gap-1 p-3 rounded-lg border border-rose-300 bg-rose-50/80 text-[13px] font-body-sm mt-2";
+        }
+
+        if (quizFeedbackExplanation) quizFeedbackExplanation.textContent = q.explanation;
+        if (quizFeedbackBox) quizFeedbackBox.classList.remove('hidden');
+        if (quizNextBtn) {
+          quizNextBtn.classList.remove('hidden');
+          quizNextBtn.classList.add('flex');
+        }
+      }
+
+      if (quizNextBtn) {
+        quizNextBtn.addEventListener('click', () => {
+          currentQuestionIdx++;
+          if (currentQuestionIdx < quizQuestions.length) {
+            renderQuestion();
+          } else {
+            showCompletionScreen();
+          }
+        });
+      }
+
+      function showCompletionScreen() {
+        if (quizActiveStep) quizActiveStep.classList.add('hidden');
+        if (quizCompletionStep) {
+          quizCompletionStep.classList.remove('hidden');
+          quizCompletionStep.classList.add('flex');
+        }
+
+        const titleElem = document.getElementById('certificate-achievement-title');
+        const badgeElem = document.getElementById('certificate-score-badge');
+
+        if (badgeElem) badgeElem.textContent = `PASSPORT SCORE: ${score} / ${quizQuestions.length}`;
+
+        let title = "HONORARY EXPLORER";
+        if (score === 8) title = "THE NILE KNOWS YOUR NAME";
+        else if (score >= 6) title = "CERTIFIED SUDAN EXPLORER";
+        else if (score >= 4) title = "RISING SUDAN SCHOLAR";
+        else title = "CURIOUS TRAVELER";
+
+        if (titleElem) titleElem.textContent = title;
+
+        playStampAudio();
+      }
+
+      if (startQuizBtn) startQuizBtn.addEventListener('click', startQuiz);
+      if (retakeQuizBtn) retakeQuizBtn.addEventListener('click', startQuiz);
+
+      if (shareScoreBtn) {
+        shareScoreBtn.addEventListener('click', () => {
+          const shareText = `I just completed the Sudan Digital Passport journey and scored ${score}/8 on Sudan's history and culture! 🇸🇩`;
+          if (navigator.share) {
+            navigator.share({
+              title: 'Sudan Digital Passport',
+              text: shareText,
+              url: window.location.href
+            }).catch(() => {});
+          } else {
+            navigator.clipboard.writeText(`${shareText} ${window.location.href}`);
+            alert('Score and link copied to clipboard!');
+          }
+        });
+      }
+
+      /* ----------------------------------------------------
+         3. TAB NAVIGATION SYSTEM
       ---------------------------------------------------- */
       const tabs = document.querySelectorAll('.nav-tab');
       const contents = document.querySelectorAll('.tab-content');
@@ -1104,7 +1265,7 @@
         }
 
         if (tabId === 'quiz') {
-          if (typeof renderQuestion === 'function') {
+          if (quizActiveStep && !quizActiveStep.classList.contains('hidden')) {
             renderQuestion();
           }
         }
@@ -1138,7 +1299,7 @@
       });
 
       /* ----------------------------------------------------
-         3. DIGITAL ENTRY STAMP INTERACTION & PERSISTENCE
+         4. DIGITAL ENTRY STAMP INTERACTION & PERSISTENCE
       ---------------------------------------------------- */
       const stampBtn = document.getElementById('stamp-touch-target');
       const ghostState = document.getElementById('stamp-ghost-state');
@@ -1186,7 +1347,6 @@
         if (stampBtn) stampBtn.classList.remove('bg-secondary/10');
       }
 
-      // Check localStorage for previous stamp state
       if (localStorage.getItem('sudan_passport_stamped') === 'true') {
         isStamped = true;
         applyStampedUI();
@@ -1228,7 +1388,7 @@
       }
 
       /* ----------------------------------------------------
-         4. FUN FACTS REVEAL TOGGLE
+         5. FUN FACTS REVEAL TOGGLE
       ---------------------------------------------------- */
       const facts = [
         "Sudan is home to over 250+ ancient pyramids — more than double the total number in Egypt!",
@@ -1252,7 +1412,7 @@
       }
 
       /* ----------------------------------------------------
-         5. HANDBOOK INDEX MODAL
+         6. HANDBOOK INDEX MODAL
       ---------------------------------------------------- */
       const primaryCard = document.getElementById('primary-expedition-card');
       const overlay = document.getElementById('handbook-overlay');
@@ -1282,157 +1442,6 @@
       if (overlay) {
         overlay.addEventListener('click', (e) => {
           if (e.target === overlay) closeHandbook();
-        });
-      }
-
-      /* ----------------------------------------------------
-         6. INTERACTIVE QUIZ ENGINE & CERTIFICATE
-      ---------------------------------------------------- */
-      const quizIntroStep = document.getElementById('quiz-intro-step');
-      const quizActiveStep = document.getElementById('quiz-active-step');
-      const quizCompletionStep = document.getElementById('quiz-completion-step');
-      
-      const startQuizBtn = document.getElementById('start-quiz-btn');
-      const retakeQuizBtn = document.getElementById('retake-quiz-btn');
-      const shareScoreBtn = document.getElementById('share-score-btn');
-
-      const quizProgressText = document.getElementById('quiz-progress-text');
-      const quizScoreLive = document.getElementById('quiz-score-live');
-      const quizProgressBar = document.getElementById('quiz-progress-bar');
-      const quizQuestionSource = document.getElementById('quiz-question-source');
-      const quizQuestionText = document.getElementById('quiz-question-text');
-      const quizAnswersContainer = document.getElementById('quiz-answers-container');
-      const quizFeedbackBox = document.getElementById('quiz-feedback-box');
-      const quizFeedbackTitle = document.getElementById('quiz-feedback-title');
-      const quizFeedbackExplanation = document.getElementById('quiz-feedback-explanation');
-      const quizNextBtn = document.getElementById('quiz-next-btn');
-
-      let currentQuestionIdx = 0;
-      let score = 0;
-      let answered = false;
-
-      function startQuiz() {
-        currentQuestionIdx = 0;
-        score = 0;
-        answered = false;
-
-        quizIntroStep.classList.add('hidden');
-        quizCompletionStep.classList.add('hidden');
-        quizActiveStep.classList.remove('hidden');
-
-        renderQuestion();
-      }
-
-      function renderQuestion() {
-        answered = false;
-        const q = quizQuestions[currentQuestionIdx];
-
-        quizProgressText.textContent = `QUESTION ${String(currentQuestionIdx + 1).padStart(2, '0')} / ${String(quizQuestions.length).padStart(2, '0')}`;
-        quizScoreLive.textContent = `SCORE: ${score}`;
-        
-        const pct = ((currentQuestionIdx + 1) / quizQuestions.length) * 100;
-        quizProgressBar.style.width = `${pct}%`;
-
-        quizQuestionSource.textContent = `${q.source.toUpperCase()} ARCHIVE`;
-        quizQuestionText.textContent = q.question;
-
-        quizFeedbackBox.classList.add('hidden');
-        quizNextBtn.classList.add('hidden');
-        quizAnswersContainer.innerHTML = '';
-
-        q.answers.forEach((ans, idx) => {
-          const btn = document.createElement('button');
-          btn.className = "w-full p-3 rounded-xl border-2 border-outline-variant/60 bg-surface-container-lowest font-body-sm text-[14px] text-primary font-medium text-left flex items-center justify-between hover:border-secondary hover:bg-surface-container transition-all active:scale-[0.99]";
-          btn.innerHTML = `
-            <span>${ans}</span>
-            <span class="w-6 h-6 rounded-full border border-outline flex items-center justify-center font-label-code text-[11px] text-outline flex-shrink-0">${String.fromCharCode(65 + idx)}</span>
-          `;
-          btn.addEventListener('click', () => handleAnswer(idx, btn));
-          quizAnswersContainer.appendChild(btn);
-        });
-      }
-
-      function handleAnswer(selectedIdx, clickedBtn) {
-        if (answered) return;
-        answered = true;
-
-        const q = quizQuestions[currentQuestionIdx];
-        const buttons = quizAnswersContainer.querySelectorAll('button');
-
-        buttons.forEach(b => b.disabled = true);
-
-        if (selectedIdx === q.correct) {
-          score++;
-          quizScoreLive.textContent = `SCORE: ${score}`;
-          clickedBtn.className = "w-full p-3 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-950 font-body-sm text-[14px] font-semibold text-left flex items-center justify-between shadow-sm";
-          quizFeedbackTitle.className = "flex items-center gap-1.5 font-label-stamp text-[11px] font-bold text-emerald-700";
-          quizFeedbackTitle.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span> CORRECT ✓`;
-          quizFeedbackBox.className = "flex flex-col gap-1 p-3 rounded-lg border border-emerald-300 bg-emerald-50/80 text-[13px] font-body-sm mt-2";
-        } else {
-          clickedBtn.className = "w-full p-3 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-950 font-body-sm text-[14px] font-medium text-left flex items-center justify-between";
-          
-          // Highlight correct answer
-          buttons[q.correct].className = "w-full p-3 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-950 font-body-sm text-[14px] font-semibold text-left flex items-center justify-between";
-
-          quizFeedbackTitle.className = "flex items-center gap-1.5 font-label-stamp text-[11px] font-bold text-rose-700";
-          quizFeedbackTitle.innerHTML = `<span class="material-symbols-outlined text-[16px]">cancel</span> NOT QUITE!`;
-          quizFeedbackBox.className = "flex flex-col gap-1 p-3 rounded-lg border border-rose-300 bg-rose-50/80 text-[13px] font-body-sm mt-2";
-        }
-
-        quizFeedbackExplanation.textContent = q.explanation;
-        quizFeedbackBox.classList.remove('hidden');
-        quizNextBtn.classList.remove('hidden');
-        quizNextBtn.classList.add('flex');
-      }
-
-      if (quizNextBtn) {
-        quizNextBtn.addEventListener('click', () => {
-          currentQuestionIdx++;
-          if (currentQuestionIdx < quizQuestions.length) {
-            renderQuestion();
-          } else {
-            showCompletionScreen();
-          }
-        });
-      }
-
-      function showCompletionScreen() {
-        quizActiveStep.classList.add('hidden');
-        quizCompletionStep.classList.remove('hidden');
-        quizCompletionStep.classList.add('flex');
-
-        const titleElem = document.getElementById('certificate-achievement-title');
-        const badgeElem = document.getElementById('certificate-score-badge');
-
-        if (badgeElem) badgeElem.textContent = `PASSPORT SCORE: ${score} / ${quizQuestions.length}`;
-
-        let title = "HONORARY EXPLORER";
-        if (score === 8) title = "THE NILE KNOWS YOUR NAME";
-        else if (score >= 6) title = "CERTIFIED SUDAN EXPLORER";
-        else if (score >= 4) title = "RISING SUDAN SCHOLAR";
-        else title = "CURIOUS TRAVELER";
-
-        if (titleElem) titleElem.textContent = title;
-
-        playStampAudio();
-      }
-
-      if (startQuizBtn) startQuizBtn.addEventListener('click', startQuiz);
-      if (retakeQuizBtn) retakeQuizBtn.addEventListener('click', startQuiz);
-
-      if (shareScoreBtn) {
-        shareScoreBtn.addEventListener('click', () => {
-          const shareText = `I just completed the Sudan Digital Passport journey and scored ${score}/8 on Sudan's history and culture! 🇸🇩`;
-          if (navigator.share) {
-            navigator.share({
-              title: 'Sudan Digital Passport',
-              text: shareText,
-              url: window.location.href
-            }).catch(() => {});
-          } else {
-            navigator.clipboard.writeText(`${shareText} ${window.location.href}`);
-            alert('Score and link copied to clipboard!');
-          }
         });
       }
 
