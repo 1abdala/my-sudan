@@ -1,12 +1,1422 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html class="h-full bg-surface" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>موقعي</title>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+  <title>Sudan // Digital Passport Journey • كراس المسافر</title>
+  <meta content="An interactive educational digital passport and travel handbook to explore the history, culture, and pyramids of Sudan." name="description"/>
+  
+  <!-- Fonts & Symbols -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#110703",
+            "on-primary": "#ffffff",
+            "primary-container": "#2b1e16",
+            "on-primary-container": "#988479",
+            "secondary": "#95491f",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#ff9e6c",
+            "on-secondary-container": "#773309",
+            "secondary-fixed": "#ffdbcb",
+            "secondary-fixed-dim": "#ffb692",
+            "tertiary": "#000a13",
+            "tertiary-container": "#032334",
+            "surface": "#fdf9f2",
+            "surface-dim": "#dddad3",
+            "surface-bright": "#fdf9f2",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f7f3ec",
+            "surface-container": "#f1ede6",
+            "surface-container-high": "#ebe8e1",
+            "surface-container-highest": "#e6e2db",
+            "on-surface": "#1c1c18",
+            "on-surface-variant": "#4e4540",
+            "outline": "#80756f",
+            "outline-variant": "#d2c4bd",
+            "background": "#fdf9f2",
+            "on-background": "#1c1c18"
+          },
+          fontFamily: {
+            "display-hero": ["Newsreader", "serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "headline-sm": ["Newsreader", "serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-code": ["JetBrains Mono", "monospace"],
+            "label-stamp": ["JetBrains Mono", "monospace"],
+            "caption": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "sm": "0.125rem",
+            "md": "0.25rem",
+            "lg": "0.375rem",
+            "xl": "0.5rem",
+            "2xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "gutter": "1.5rem",
+            "gutter-mobile": "1rem",
+            "margin": "3rem",
+            "margin-mobile": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.75rem",
+            "space-xl": "2.75rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overscroll-behavior: none;
+        background-color: #fdf9f2;
+        color: #1c1c18;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* Keyframe Animations */
+    @keyframes stampSlam {
+      0% { transform: scale(2.2) rotate(-12deg); opacity: 0; }
+      70% { transform: scale(0.92) rotate(2deg); opacity: 1; }
+      100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    }
+    .animate-stamp-slam {
+      animation: stampSlam 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    }
+    .animate-pulse-glow {
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+  </style>
 </head>
-<body>
-  <h1>أهلاً وسهلاً 👋</h1>
-  <p>الموقع قريباً...</p>
+<body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+  <!-- TOP DOCUMENT HEADER -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(43,30,22,0.05)] pt-safe">
+    <div class="h-20 px-gutter-mobile flex items-center justify-between gap-space-xs max-w-2xl mx-auto">
+      <div class="flex items-center gap-space-sm min-w-0">
+        <!-- Stamp Emblem Icon -->
+        <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm border border-secondary/30">
+          <span class="material-symbols-outlined text-secondary-fixed text-[20px]">verified</span>
+        </div>
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-space-xs">
+            <span class="font-label-stamp text-[10px] text-secondary uppercase tracking-widest font-bold">SUDAN // DIGITAL JOURNEY</span>
+          </div>
+          <div class="flex items-center gap-space-xs">
+            <h1 class="font-headline-sm text-[18px] text-primary truncate leading-tight font-semibold" id="page-title">Home</h1>
+            <span class="font-label-code text-[11px] text-on-surface-variant/80 hidden sm:inline-block">• FOLIO NO. SD-2026-ED</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-space-xs flex-shrink-0">
+        <div class="flex items-center gap-space-xs bg-surface-container px-2.5 py-1 rounded-full border border-outline-variant/50">
+          <span class="font-label-code text-[10px] text-secondary tracking-wider font-bold uppercase">FOLIO 1956-SD</span>
+          <div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex flex-col relative w-full px-gutter-mobile pt-20 pb-28 bg-surface min-h-screen max-w-2xl mx-auto">
+    
+    <!-- Security Guilloché Pattern Overlay -->
+    <div class="pointer-events-none absolute inset-0 -z-10 opacity-[0.035] overflow-hidden">
+      <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern height="48" id="guilloche-wavy" patternunits="userSpaceOnUse" width="48">
+            <path d="M 0 24 C 12 12, 36 36, 48 24 M 0 0 C 12 12, 36 -12, 48 0 M 0 48 C 12 60, 36 36, 48 48" fill="none" stroke="#2B1E16" stroke-width="0.75"></path>
+            <path d="M 24 0 C 36 12, 12 36, 24 48" fill="none" stroke="#95491f" stroke-width="0.5"></path>
+          </pattern>
+        </defs>
+        <rect fill="url(#guilloche-wavy)" height="100%" width="100%"></rect>
+      </svg>
+    </div>
+
+    <!-- Binding Stitch Header Line -->
+    <div class="w-full flex items-center justify-between pb-space-xs mb-space-xs pt-2">
+      <div class="flex items-center gap-space-xs">
+        <div class="flex gap-1 items-center">
+          <span class="w-2 h-0.5 bg-secondary/50 rounded-full"></span>
+          <span class="w-2 h-0.5 bg-secondary rounded-full"></span>
+          <span class="w-2 h-0.5 bg-secondary/50 rounded-full"></span>
+        </div>
+        <span class="font-label-stamp text-[10px] text-secondary uppercase tracking-widest pl-1 font-bold">EXPLORER'S JOURNAL • SUDAN</span>
+      </div>
+      <span class="font-label-code text-[10px] text-on-surface-variant/70 font-medium">15.5527° N, 32.5324° E</span>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 1: HOME (PASSPORT HOMEPAGE) -->
+    <!-- ========================================== -->
+    <section class="tab-content flex flex-col w-full gap-space-md" id="tab-home">
+      
+      <!-- Passport Document Sheet -->
+      <div class="flex flex-col w-full rounded-xl bg-surface-container-low shadow-[0_4px_20px_rgba(43,30,22,0.07)] p-space-md relative overflow-hidden border border-outline-variant/40" id="passport-document">
+        
+        <!-- Filigree Border Accent Top -->
+        <div class="flex justify-between items-center w-full px-1 pb-space-xs opacity-60">
+          <svg class="w-full h-2 text-secondary" fill="currentColor" preserveaspectratio="none" viewbox="0 0 320 8">
+            <polygon opacity="0.4" points="0,8 4,0 8,8 12,0 16,8 20,0 24,8 28,0 32,8 36,0 40,8 44,0 48,8 52,0 56,8 60,0 64,8 68,0 72,8 76,0 80,8 84,0 88,8 92,0 96,8 100,0 104,8 108,0 112,8 116,0 120,8 124,0 128,8 132,0 136,8 140,0 144,8 148,0 152,8 156,0 160,8 164,0 168,8 172,0 176,8 180,0 184,8 188,0 192,8 196,0 200,8 204,0 208,8 212,0 216,8 220,0 224,8 228,0 232,8 236,0 240,8 244,0 248,8 252,0 256,8 260,0 264,8 268,0 272,8 276,0 280,8 284,0 288,8 292,0 296,8 300,0 304,8 308,0 312,8 316,0 320,8"></polygon>
+          </svg>
+        </div>
+
+        <!-- Welcome Heading -->
+        <div class="flex flex-col pt-space-xs pb-space-md text-center items-center">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high mb-2 shadow-sm border border-outline-variant/40">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            <span class="font-label-stamp text-[10px] text-secondary tracking-widest uppercase font-bold">EXPLORER'S PASSPORT • كراس المسافر</span>
+          </div>
+          <h2 class="font-headline-lg-mobile text-[32px] sm:text-[40px] text-primary tracking-tight leading-tight font-normal">WELCOME TO SUDAN</h2>
+          <p class="font-headline-sm text-[16px] italic text-on-surface-variant/90 max-w-xs text-center mt-1 leading-snug">“Discover the land of two Niles, ancient sands, and eternal living cultures.”</p>
+        </div>
+
+        <!-- Hero Passport Photo Card (Pyramids of Meroë) -->
+        <div class="w-full bg-surface-container-lowest rounded-xl p-3 shadow-[0_4px_16px_rgba(43,30,22,0.08)] relative overflow-hidden flex flex-col gap-3 border border-outline-variant/50">
+          <div class="relative w-full h-56 sm:h-64 rounded-lg overflow-hidden bg-primary-container shadow-inner">
+            <img alt="Majestic golden hour photography of the steep Nubian pyramids of Meroë in Sudan rising dramatically from golden sand dunes." class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop"/>
+            <!-- Corner Photo Brackets -->
+            <div class="absolute top-1.5 left-1.5 w-4 h-4 bg-secondary-fixed shadow-sm transform -rotate-45 -translate-x-1 -translate-y-1 opacity-90 pointer-events-none"></div>
+            <div class="absolute top-1.5 right-1.5 w-4 h-4 bg-secondary-fixed shadow-sm transform rotate-45 translate-x-1 -translate-y-1 opacity-90 pointer-events-none"></div>
+            <div class="absolute bottom-1.5 left-1.5 w-4 h-4 bg-secondary-fixed shadow-sm transform rotate-45 -translate-x-1 translate-y-1 opacity-90 pointer-events-none"></div>
+            <div class="absolute bottom-1.5 right-1.5 w-4 h-4 bg-secondary-fixed shadow-sm transform -rotate-45 translate-x-1 translate-y-1 opacity-90 pointer-events-none"></div>
+            <!-- Photo Label -->
+            <div class="absolute bottom-2 left-2 right-2 bg-primary/85 backdrop-blur-md px-3 py-1.5 rounded text-on-primary flex items-center justify-between shadow">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <span class="material-symbols-outlined text-secondary-fixed text-[15px] flex-shrink-0">photo_camera</span>
+                <span class="font-label-code text-[10px] text-surface-bright tracking-wider uppercase truncate">Meroë Royal Necropolis • 250+ Pyramids</span>
+              </div>
+              <span class="font-label-stamp text-[9px] text-secondary-fixed uppercase tracking-wider flex-shrink-0 font-bold">NUBIA</span>
+            </div>
+          </div>
+
+          <!-- Document Identity Metadata -->
+          <div class="w-full grid grid-cols-3 gap-2 pt-1 border-b border-surface-container-high/80 pb-2 text-left">
+            <div class="flex flex-col">
+              <span class="font-label-stamp text-[9px] uppercase tracking-wider text-outline font-bold">COUNTRY</span>
+              <span class="font-headline-sm text-[14px] text-primary leading-tight mt-0.5 font-medium">Sudan / السودان</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label-stamp text-[9px] uppercase tracking-wider text-outline font-bold">REGION</span>
+              <span class="font-body-md text-[13px] font-semibold text-primary leading-tight mt-0.5">Northeast Africa</span>
+            </div>
+            <div class="flex flex-col text-right">
+              <span class="font-label-stamp text-[9px] uppercase tracking-wider text-outline font-bold">COORDINATES</span>
+              <span class="font-label-code text-[11px] text-secondary font-bold leading-tight mt-0.5">15.55° N, 32.53° E</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TACTILE INTERACTIVE DIGITAL ENTRY STAMP -->
+        <div class="w-full my-space-md flex flex-col items-center">
+          <div class="w-full flex items-center justify-between mb-1.5 px-1">
+            <span class="font-label-stamp text-[10px] text-outline uppercase tracking-wider font-bold">DIGITAL ENTRY STAMP</span>
+            <span class="font-label-code text-[10px] text-secondary font-bold uppercase tracking-wider" id="stamp-action-hint">TAP TO ENDORSE 🇸🇩</span>
+          </div>
+
+          <div aria-label="Tap to stamp passport entry visa" class="w-full min-h-[148px] rounded-xl bg-surface-container flex flex-col items-center justify-center cursor-pointer transition-all duration-300 relative overflow-hidden group border-2 border-dashed border-secondary/40 hover:border-secondary p-4 active:scale-95 shadow-sm hover:shadow-md select-none" id="stamp-touch-target" role="button" tabindex="0">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04]">
+              <span class="material-symbols-outlined text-[140px] text-primary">public</span>
+            </div>
+
+            <!-- Default Unstamped Ghost State -->
+            <div class="flex flex-col items-center justify-center text-center transition-all duration-300" id="stamp-ghost-state">
+              <div class="w-12 h-12 rounded-full border-2 border-dashed border-secondary/60 flex items-center justify-center mb-2 bg-secondary/10 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-secondary text-[24px] animate-bounce">touch_app</span>
+              </div>
+              <span class="font-label-stamp text-[12px] text-secondary font-bold tracking-widest uppercase">TAP TO STAMP PASSPORT</span>
+              <span class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">Endorse your digital expedition pass</span>
+            </div>
+
+            <!-- Stamped State (Terracotta Ink Imprint) -->
+            <div class="hidden flex-col items-center justify-center text-center transform transition-all duration-300" id="stamp-imprint-state">
+              <div class="px-5 py-3 rounded-xl border-2 border-secondary bg-secondary/10 flex flex-col items-center justify-center shadow-inner relative transform -rotate-2 border-dashed">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[18px]">🇸🇩</span>
+                  <span class="font-label-stamp text-[13px] text-secondary font-bold tracking-widest uppercase">SUDAN — ENTRY</span>
+                  <span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+                </div>
+                <div class="font-label-code text-[11px] text-secondary font-bold tracking-wider mt-0.5">DIGITAL JOURNEY // 2026</div>
+                <div class="mt-1.5 inline-flex items-center gap-1 bg-secondary text-surface-bright px-2.5 py-0.5 rounded-full shadow-sm">
+                  <span class="material-symbols-outlined text-[12px]">check</span>
+                  <span class="font-label-stamp text-[8px] tracking-wider uppercase font-bold">ENTRY GRANTED • WELCOME ABOARD</span>
+                </div>
+              </div>
+              <button class="mt-2.5 text-[10px] font-label-code text-secondary font-bold tracking-wider uppercase underline hover:text-primary transition-colors flex items-center gap-1" id="re-stamp-btn" type="button">
+                <span class="material-symbols-outlined text-[13px]">refresh</span> Stamp Again
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAPTER / ARCHIVE CARDS -->
+        <div class="flex flex-col gap-3 w-full">
+          <div class="flex items-center justify-between px-1">
+            <span class="font-label-stamp text-[10px] text-outline tracking-wider uppercase font-bold">PASSPORT ARTIFACTS &amp; CHAPTERS</span>
+            <span class="font-label-code text-[10px] text-secondary font-semibold">4 ARCHIVES</span>
+          </div>
+
+          <!-- 1. EXPLORE SUDAN MASTER FOLIO -->
+          <div class="w-full bg-primary-container text-on-primary rounded-xl p-space-md shadow-[0_8px_20px_rgba(43,30,22,0.18)] cursor-pointer relative overflow-hidden transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] group border-l-4 border-secondary-container" id="primary-expedition-card" role="button" tabindex="0">
+            <div class="flex items-start justify-between">
+              <div class="flex flex-col">
+                <div class="flex items-center gap-1.5 mb-1">
+                  <span class="material-symbols-outlined text-secondary-fixed text-[18px]">explore</span>
+                  <span class="font-label-stamp text-[10px] text-secondary-fixed tracking-widest uppercase font-bold">MASTER FOLIO // رحلة استكشاف</span>
+                </div>
+                <h3 class="font-headline-md text-[24px] text-surface-bright tracking-tight leading-tight group-hover:text-secondary-fixed transition-colors font-medium">EXPLORE SUDAN</h3>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-surface-container-lowest/10 flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:text-on-secondary transition-all">
+                <span class="material-symbols-outlined text-on-primary text-[22px]">arrow_forward</span>
+              </div>
+            </div>
+            <p class="font-body-md text-[14px] text-on-primary-container mt-1.5 pr-4 leading-relaxed">Grand expedition through pyramids, golden sand horizons, and ancient Nubian kingdoms.</p>
+            <div class="w-full flex items-center justify-between pt-space-sm mt-space-sm bg-primary/40 -mx-space-md px-space-md pb-0.5 border-t border-primary-container/80">
+              <span class="font-label-code text-[11px] text-secondary-fixed font-bold tracking-wider">FOLIO PASS • NO. 01</span>
+              <div class="flex items-center gap-1 text-surface-container-highest">
+                <span class="font-label-stamp text-[10px] tracking-widest uppercase font-bold">OPEN HANDBOOK</span>
+                <span class="material-symbols-outlined text-[14px]">auto_stories</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. HISTORY CARD -->
+          <div class="nav-card w-full bg-surface-container-high border border-outline-variant/60 rounded-xl p-3.5 flex items-center justify-between shadow-sm hover:shadow-md transition-all active:scale-[0.99] cursor-pointer relative overflow-hidden group" data-target="history" role="button" tabindex="0">
+            <div class="absolute -left-1 top-2 bottom-2 w-1.5 bg-secondary/80 rounded-r"></div>
+            <div class="flex items-center gap-3 pl-1">
+              <div class="w-11 h-11 rounded-lg bg-surface-container-lowest border border-dashed border-secondary/40 flex flex-col items-center justify-center flex-shrink-0 text-secondary shadow-sm">
+                <span class="material-symbols-outlined text-[20px]">history_edu</span>
+              </div>
+              <div class="flex flex-col min-w-0 pr-1">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-label-stamp text-[9px] uppercase tracking-wider text-secondary font-bold">ARCHAEOLOGICAL LEDGER</span>
+                  <span class="w-1 h-1 rounded-full bg-outline"></span>
+                  <span class="font-label-code text-[10px] text-on-surface-variant">2500 BCE → NOW</span>
+                </div>
+                <h4 class="font-headline-sm text-[16px] text-primary leading-tight truncate mt-0.5 font-semibold">5,000 Years of Nile Glory</h4>
+                <p class="font-body-sm text-[12px] text-on-surface-variant truncate">Kerma, Kush, Meroë &amp; the Black Pharaohs dynasty.</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-outline group-hover:text-secondary text-[20px] transition-colors pr-1">chevron_right</span>
+          </div>
+
+          <!-- 3. CULTURE CARD -->
+          <div class="nav-card w-full bg-secondary-fixed/30 border border-secondary/20 rounded-xl p-3.5 flex items-center justify-between shadow-sm hover:shadow-md transition-all active:scale-[0.99] cursor-pointer relative overflow-hidden group" data-target="culture" role="button" tabindex="0">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-lg bg-surface-container-lowest flex items-center justify-center flex-shrink-0 text-secondary shadow-sm border border-secondary/20">
+                <span class="material-symbols-outlined text-[22px]">coffee</span>
+              </div>
+              <div class="flex flex-col min-w-0 pr-1">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-label-stamp text-[9px] uppercase tracking-wider text-secondary font-bold">FIELD DISPATCH</span>
+                  <span class="w-1 h-1 rounded-full bg-outline"></span>
+                  <span class="font-label-code text-[10px] text-secondary/80">LIVING ETHOS</span>
+                </div>
+                <h4 class="font-headline-sm text-[16px] text-primary leading-tight truncate mt-0.5 font-semibold">Living Culture &amp; Generous Traditions</h4>
+                <p class="font-body-sm text-[12px] text-on-surface-variant truncate">Jebena coffee ceremony, vibrant Thoub textiles &amp; Oud rhythms.</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-outline group-hover:text-secondary text-[20px] transition-colors pr-1">chevron_right</span>
+          </div>
+
+          <!-- 4. FUN FACTS CARD (Interactive Reveal) -->
+          <div class="w-full bg-[#f4ecd8] border border-[#d8c8a8] rounded-xl p-3.5 flex flex-col gap-2 shadow-sm transition-all relative" id="secret-dossier-card">
+            <div class="flex items-center justify-between cursor-pointer" id="dossier-toggle">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-lg bg-surface-container-lowest flex items-center justify-center text-secondary shadow-sm border border-[#c6b696]">
+                  <span class="material-symbols-outlined text-[20px]">psychology_alt</span>
+                </div>
+                <div>
+                  <span class="font-label-stamp text-[9px] uppercase tracking-wider text-secondary font-bold bg-secondary/10 px-2 py-0.5 rounded">CLASSIFIED DISCOVERY</span>
+                  <h4 class="font-headline-sm text-[16px] text-primary leading-tight mt-0.5 font-semibold">Untold Secrets &amp; World Curiosities</h4>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-outline text-[18px] transition-transform duration-300" id="dossier-arrow">expand_more</span>
+            </div>
+
+            <div class="bg-surface-container-lowest/90 rounded-lg p-3 border border-dashed border-[#c6b696] flex flex-col gap-2 mt-0.5">
+              <div class="flex items-center justify-between">
+                <span class="font-label-code text-[11px] text-secondary font-bold" id="fact-number">CURIOSITY #01</span>
+                <span class="font-label-stamp text-[9px] text-secondary font-bold uppercase tracking-widest px-2 py-0.5 bg-secondary/10 rounded">SECRET</span>
+              </div>
+              <p class="font-body-sm text-[13px] text-primary font-medium leading-snug" id="fact-text">Sudan is home to over 250+ ancient pyramids — more than double the total number in Egypt!</p>
+              <button class="mt-1 self-end text-[10px] font-label-code text-secondary font-bold uppercase tracking-wider flex items-center gap-1 hover:underline" id="next-fact-btn">
+                <span>NEXT FACT</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. WAYPOINT TICKET (Navigate to Explore) -->
+          <div class="nav-card w-full bg-surface-container-high rounded-xl p-3 flex items-center justify-between border-t-2 border-b-2 border-secondary/30 border-dashed hover:bg-surface-container transition-colors cursor-pointer" data-target="explore">
+            <div class="flex items-center gap-2.5 min-w-0 pr-2">
+              <span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0">local_activity</span>
+              <div class="flex flex-col min-w-0">
+                <span class="font-label-stamp text-[9px] text-outline uppercase tracking-wider font-bold">WAYPOINT EXPEDITION TICKET</span>
+                <span class="font-label-code text-[11px] text-primary font-semibold truncate">Khartoum • Jebel Barkal • Red Sea Coral Suakin</span>
+              </div>
+            </div>
+            <span class="font-label-stamp text-[10px] text-secondary font-bold uppercase tracking-wider flex-shrink-0 bg-secondary/10 px-2 py-1 rounded">VIEW ROUTE</span>
+          </div>
+        </div>
+
+        <!-- EDUCATIONAL HANDBOOK FOOTER -->
+        <div class="w-full bg-surface-container-high/60 rounded-xl p-3 mt-space-md flex flex-col items-center text-center gap-1 border border-outline-variant/40">
+          <div class="flex items-center gap-1.5 text-secondary">
+            <span class="material-symbols-outlined text-[16px]">menu_book</span>
+            <span class="font-label-stamp text-[10px] uppercase tracking-widest font-bold">SUDAN EDUCATIONAL HANDBOOK • CULTURAL HERITAGE FOLIO</span>
+          </div>
+          <p class="font-caption text-[11px] text-on-surface-variant/80 max-w-xs">An interactive digital gateway curated for explorers, students, and culture enthusiasts worldwide.</p>
+        </div>
+      </div>
+
+      <!-- HOMEPAGE QUIZ TEASER CTA -->
+      <div class="w-full bg-primary text-on-primary rounded-xl p-4 shadow-md flex flex-col items-center text-center gap-2 border border-secondary/30 mt-2">
+        <span class="font-label-stamp text-[10px] text-secondary-fixed uppercase tracking-widest font-bold">FINAL EXPEDITION TEST</span>
+        <h3 class="font-headline-md text-[20px] text-surface-bright font-normal">THINK YOU KNOW SUDAN?</h3>
+        <p class="font-body-sm text-[13px] text-on-primary-container max-w-xs">Complete your journey and test what you learned to earn your official digital stamp.</p>
+        <button class="nav-card mt-1 px-5 py-2.5 rounded-lg bg-secondary text-on-secondary font-label-stamp text-[11px] tracking-widest uppercase font-bold flex items-center gap-2 shadow-sm hover:bg-secondary/90 transition-colors" data-target="quiz">
+          <span>TAKE THE QUIZ</span>
+          <span class="material-symbols-outlined text-[16px]">verified</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: EXPLORE (WAYPOINTS & REGIONS) -->
+    <!-- ========================================== -->
+    <section class="tab-content hidden flex-col w-full gap-space-md" id="tab-explore">
+      <div class="flex flex-col w-full rounded-xl bg-surface-container-low shadow-sm p-space-md border border-outline-variant/40">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col border-b border-outline-variant/60 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[22px]">explore</span>
+            <span class="font-label-stamp text-[10px] text-secondary uppercase tracking-widest font-bold">FOLIO NO. 02 // DISPATCHES &amp; WAYPOINTS</span>
+          </div>
+          <h2 class="font-headline-lg-mobile text-[28px] text-primary leading-tight mt-1 font-normal">Explore the Land of Two Niles</h2>
+          <p class="font-body-sm text-[13px] text-on-surface-variant mt-1">Journey across Nubian deserts, sacred mountains, ancient pyramids, and vibrant coral ports.</p>
+        </div>
+
+        <!-- Waypoints List -->
+        <div class="flex flex-col gap-4">
+          
+          <!-- Waypoint 1: Meroë -->
+          <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/50 shadow-sm">
+            <div class="relative h-44 w-full bg-primary-container">
+              <img alt="Steep Nubian pyramids of Meroe" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=800&auto=format&fit=crop"/>
+              <div class="absolute top-2 left-2 bg-primary/80 backdrop-blur-md px-2.5 py-0.5 rounded text-surface-bright font-label-stamp text-[9px] uppercase tracking-wider font-bold">
+                WAYPOINT #01
+              </div>
+            </div>
+            <div class="p-3.5 flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Royal Pyramids of Meroë</h3>
+                <span class="font-label-code text-[11px] text-secondary font-bold">16.93° N, 33.74° E</span>
+              </div>
+              <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+                The capital of the ancient Kingdom of Kush. Meroë features more than 200 steep-sided Nubian pyramids built over 2,000 years ago as royal tombs for Kushite kings and queens (Kandakes).
+              </p>
+              <div class="flex flex-wrap gap-1.5 mt-1">
+                <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">UNESCON WORLD HERITAGE</span>
+                <span class="font-label-stamp text-[9px] bg-surface-container text-on-surface-variant px-2 py-0.5 rounded">KUSHITE DYNASTY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Waypoint 2: Khartoum Confluence -->
+          <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/50 shadow-sm">
+            <div class="relative h-44 w-full bg-primary-container">
+              <img alt="Confluence of Blue and White Niles in Khartoum" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?q=80&w=800&auto=format&fit=crop"/>
+              <div class="absolute top-2 left-2 bg-primary/80 backdrop-blur-md px-2.5 py-0.5 rounded text-surface-bright font-label-stamp text-[9px] uppercase tracking-wider font-bold">
+                WAYPOINT #02
+              </div>
+            </div>
+            <div class="p-3.5 flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-sm text-[18px] text-primary font-semibold">The Two Niles Confluence</h3>
+                <span class="font-label-code text-[11px] text-secondary font-bold">Khartoum • 15.55° N</span>
+              </div>
+              <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+                At the heart of Khartoum, the White Nile flowing from Lake Victoria meets the Blue Nile originating from the Ethiopian highlands, merging to form the longest river on Earth.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mt-1">
+                <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">AL-MOGRAN</span>
+                <span class="font-label-stamp text-[9px] bg-surface-container text-on-surface-variant px-2 py-0.5 rounded">GEOGRAPHIC WONDER</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Waypoint 3: Jebel Barkal -->
+          <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/50 shadow-sm">
+            <div class="relative h-44 w-full bg-primary-container">
+              <img alt="Jebel Barkal mountain in Karima Sudan" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=800&auto=format&fit=crop"/>
+              <div class="absolute top-2 left-2 bg-primary/80 backdrop-blur-md px-2.5 py-0.5 rounded text-surface-bright font-label-stamp text-[9px] uppercase tracking-wider font-bold">
+                WAYPOINT #03
+              </div>
+            </div>
+            <div class="p-3.5 flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Jebel Barkal &amp; Sacred Mountain</h3>
+                <span class="font-label-code text-[11px] text-secondary font-bold">Karima • 18.53° N</span>
+              </div>
+              <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+                A sacred sandstone mountain rising 98 meters above the Nile valley. Ancient Kushite pharaohs believed it to be the residence of the god Amun and built majestic temples and royal tombs at its base.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mt-1">
+                <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">SACRED TEMPLE SITE</span>
+                <span class="font-label-stamp text-[9px] bg-surface-container text-on-surface-variant px-2 py-0.5 rounded">BLACK PHARAOHS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Waypoint 4: Suakin Coral Port -->
+          <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/50 shadow-sm">
+            <div class="relative h-44 w-full bg-primary-container">
+              <img alt="Red Sea Coast of Sudan Suakin" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop"/>
+              <div class="absolute top-2 left-2 bg-primary/80 backdrop-blur-md px-2.5 py-0.5 rounded text-surface-bright font-label-stamp text-[9px] uppercase tracking-wider font-bold">
+                WAYPOINT #04
+              </div>
+            </div>
+            <div class="p-3.5 flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Coral Port City of Suakin</h3>
+                <span class="font-label-code text-[11px] text-secondary font-bold">Red Sea • 19.10° N</span>
+              </div>
+              <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+                An ancient island port on the Red Sea crafted uniquely out of coral stone. Historically it served as a major trade gateway connecting Africa, Arabia, and the Indian Ocean.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mt-1">
+                <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">RED SEA COAST</span>
+                <span class="font-label-stamp text-[9px] bg-surface-container text-on-surface-variant px-2 py-0.5 rounded">CORAL ARCHITECTURE</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: HISTORY (TIMELINE & LEDGER) -->
+    <!-- ========================================== -->
+    <section class="tab-content hidden flex-col w-full gap-space-md" id="tab-history">
+      <div class="flex flex-col w-full rounded-xl bg-surface-container-low shadow-sm p-space-md border border-outline-variant/40">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col border-b border-outline-variant/60 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[22px]">history_edu</span>
+            <span class="font-label-stamp text-[10px] text-secondary uppercase tracking-widest font-bold">FOLIO NO. 03 // ARCHAEOLOGICAL LEDGER</span>
+          </div>
+          <h2 class="font-headline-lg-mobile text-[28px] text-primary leading-tight mt-1 font-normal">5,000 Years of Nile Glory</h2>
+          <p class="font-body-sm text-[13px] text-on-surface-variant mt-1">Trace Sudan's continuous civilization from ancient Kerma to Kush, Meroë, and the modern republic.</p>
+        </div>
+
+        <!-- Interactive Timeline -->
+        <div class="relative pl-6 flex flex-col gap-6 border-l-2 border-dashed border-secondary/40 my-2">
+          
+          <!-- Era 1 -->
+          <div class="relative flex flex-col gap-1.5">
+            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-secondary border-2 border-surface flex items-center justify-center shadow-sm">
+              <div class="w-1.5 h-1.5 rounded-full bg-surface-bright"></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-label-code text-[11px] text-secondary font-bold">2500 BCE – 1500 BCE</span>
+              <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">KERMA KINGDOM</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">The Kingdom of Kerma</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              One of Africa's earliest urban civilizations. Famous for its massive mud-brick monument (*Deffufa*), advanced bronze metalwork, and exquisite eggshell pottery.
+            </p>
+          </div>
+
+          <!-- Era 2 -->
+          <div class="relative flex flex-col gap-1.5">
+            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-secondary border-2 border-surface flex items-center justify-center shadow-sm">
+              <div class="w-1.5 h-1.5 rounded-full bg-surface-bright"></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-label-code text-[11px] text-secondary font-bold">1000 BCE – 300 BCE</span>
+              <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">25TH DYNASTY</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">The Black Pharaohs of Kush (Napata)</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              Kushite King Piye conquered Egypt, inaugurating the 25th Dynasty. For nearly a century, Kushite monarchs ruled a unified empire stretching from Khartoum to the Mediterranean.
+            </p>
+          </div>
+
+          <!-- Era 3 -->
+          <div class="relative flex flex-col gap-1.5">
+            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-secondary border-2 border-surface flex items-center justify-center shadow-sm">
+              <div class="w-1.5 h-1.5 rounded-full bg-surface-bright"></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-label-code text-[11px] text-secondary font-bold">300 BCE – 350 CE</span>
+              <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">MEROË &amp; KANDAKES</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Meroitic Era &amp; Warrior Queens</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              The capital moved to Meroë. Ruled by powerful queen mothers (*Kandakes*) like Amanirenas, who famously defeated Roman legions. Meroë developed its own indigenous written script.
+            </p>
+          </div>
+
+          <!-- Era 4 -->
+          <div class="relative flex flex-col gap-1.5">
+            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-secondary border-2 border-surface flex items-center justify-center shadow-sm">
+              <div class="w-1.5 h-1.5 rounded-full bg-surface-bright"></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-label-code text-[11px] text-secondary font-bold">500 CE – 1500 CE</span>
+              <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">MEDIEVAL NUBIA</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Christian Nubian Kingdoms</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              Kingdoms of Nobatia, Makuria, and Alodia flourished along the Nile, building stunning vaulted churches decorated with vibrant Byzantine-style frescoes.
+            </p>
+          </div>
+
+          <!-- Era 5 -->
+          <div class="relative flex flex-col gap-1.5">
+            <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-secondary border-2 border-surface flex items-center justify-center shadow-sm">
+              <div class="w-1.5 h-1.5 rounded-full bg-surface-bright"></div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-label-code text-[11px] text-secondary font-bold">1504 CE – 1956 CE</span>
+              <span class="font-label-stamp text-[9px] bg-secondary/10 text-secondary px-2 py-0.5 rounded font-bold">FUNJ &amp; INDEPENDENCE</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Funj Sultanate to Independence</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              The Black Sultanate of Sennar unified central Sudan, cultivating Islamic scholarly traditions. On January 1, 1956, Sudan officially raised its flag of independence.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: CULTURE (ETHOS & TRADITIONS) -->
+    <!-- ========================================== -->
+    <section class="tab-content hidden flex-col w-full gap-space-md" id="tab-culture">
+      <div class="flex flex-col w-full rounded-xl bg-surface-container-low shadow-sm p-space-md border border-outline-variant/40">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col border-b border-outline-variant/60 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[22px]">palette</span>
+            <span class="font-label-stamp text-[10px] text-secondary uppercase tracking-widest font-bold">FOLIO NO. 04 // FIELD DISPATCHES</span>
+          </div>
+          <h2 class="font-headline-lg-mobile text-[28px] text-primary leading-tight mt-1 font-normal">Living Culture &amp; Generous Ethos</h2>
+          <p class="font-body-sm text-[13px] text-on-surface-variant mt-1">Discover Sudanese hospitality, traditional Jebena coffee, colorful textiles, and rich culinary heritage.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4">
+          
+          <!-- Culture 1: Jebena Coffee -->
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/50 flex flex-col gap-2 shadow-sm">
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-[24px]">coffee</span>
+              <span class="font-label-stamp text-[10px] uppercase tracking-wider font-bold">HOSPITALITY CEREMONY</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">The Jebena Coffee Ritual</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              Coffee in Sudan is brewed in a traditional clay pot called a <strong>Jebena</strong>, spiced with ginger and cardamom, and served alongside incense (*Bakhour*). It represents warmth, welcoming guests, and community gathering.
+            </p>
+          </div>
+
+          <!-- Culture 2: Thoub & Jalabiya -->
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/50 flex flex-col gap-2 shadow-sm">
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-[24px]">styler</span>
+              <span class="font-label-stamp text-[10px] uppercase tracking-wider font-bold">ATTIRE &amp; ELEGANCE</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">The Sudanese Thoub &amp; Jalabiya</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              Sudanese women wear the iconic <strong>Thoub</strong>—a 4.5-meter colorful draped garment expressing artistic flair and dignity. Men wear the comfortable, clean white <strong>Jalabiya</strong> with a matching turban (*Imama*).
+            </p>
+          </div>
+
+          <!-- Culture 3: Cuisine -->
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/50 flex flex-col gap-2 shadow-sm">
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-[24px]">restaurant</span>
+              <span class="font-label-stamp text-[10px] uppercase tracking-wider font-bold">FLAVORS OF THE NILE</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Sudanese Cuisine</h3>
+            <div class="grid grid-cols-2 gap-2 mt-1">
+              <div class="bg-surface-container p-2.5 rounded-lg">
+                <span class="font-headline-sm text-[14px] text-primary font-semibold block">Kisra (كسرة)</span>
+                <span class="font-body-sm text-[11px] text-on-surface-variant">Paper-thin fermented sorghum flatbread served with savory stews (*Mullah*).</span>
+              </div>
+              <div class="bg-surface-container p-2.5 rounded-lg">
+                <span class="font-headline-sm text-[14px] text-primary font-semibold block">Ful Medames (فول)</span>
+                <span class="font-body-sm text-[11px] text-on-surface-variant">Slow-cooked fava beans dressed with sesame oil, feta, and fresh bread.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Culture 4: Oud & Music -->
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/50 flex flex-col gap-2 shadow-sm">
+            <div class="flex items-center gap-2 text-secondary">
+              <span class="material-symbols-outlined text-[24px]">music_note</span>
+              <span class="font-label-stamp text-[10px] uppercase tracking-wider font-bold">RHYTHMS &amp; POETRY</span>
+            </div>
+            <h3 class="font-headline-sm text-[18px] text-primary font-semibold">Nubian Tambour &amp; Pentatonic Oud</h3>
+            <p class="font-body-sm text-[13px] text-on-surface-variant leading-relaxed">
+              Sudanese music relies on the distinct pentatonic (5-note) scale. Melodic stringed instruments like the <strong>Oud</strong> and traditional Nubian <strong>Kisir / Tambour</strong> lyres accompany poetic lyrics celebrating love and country.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: QUIZ & PASSPORT CERTIFICATE -->
+    <!-- ========================================== -->
+    <section class="tab-content hidden flex-col w-full gap-space-md" id="tab-quiz">
+      
+      <!-- STEP A: QUIZ INTRO SCREEN -->
+      <div class="flex flex-col w-full rounded-xl bg-surface-container-low shadow-sm p-space-md border border-outline-variant/40 text-center items-center" id="quiz-intro-step">
+        <div class="w-14 h-14 rounded-full bg-secondary/10 border-2 border-secondary/40 flex items-center justify-center text-secondary mb-3">
+          <span class="material-symbols-outlined text-[32px]">verified</span>
+        </div>
+        <span class="font-label-stamp text-[10px] text-secondary uppercase tracking-widest font-bold">FOLIO NO. 05 // PASSPORT EXAMINATION</span>
+        <h2 class="font-headline-lg-mobile text-[28px] text-primary mt-1 font-normal">SUDAN KNOWLEDGE TEST</h2>
+        <p class="font-body-sm text-[13px] text-on-surface-variant max-w-xs mt-1 leading-relaxed">
+          Prove what you learned on your expedition through Sudan's history, culture, and pyramids.
+        </p>
+
+        <div class="w-full bg-surface-container-lowest p-4 rounded-xl border border-dashed border-secondary/40 my-4 text-left flex flex-col gap-2">
+          <div class="flex items-center gap-2 font-label-code text-[11px] text-secondary font-bold">
+            <span class="material-symbols-outlined text-[16px]">info</span>
+            <span>EXAMINATION RULES:</span>
+          </div>
+          <ul class="font-body-sm text-[12px] text-on-surface-variant flex flex-col gap-1 list-disc pl-4">
+            <li>8 questions derived directly from this handbook.</li>
+            <li>Instant feedback &amp; explanations after each answer.</li>
+            <li>Earn your official <strong>Honorary Sudanese Citizen</strong> passport stamp upon completion!</li>
+          </ul>
+        </div>
+
+        <button class="w-full py-3 rounded-xl bg-secondary text-on-secondary font-label-stamp text-[12px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 shadow-md hover:bg-secondary/90 active:scale-95 transition-all" id="start-quiz-btn">
+          <span>START PASSPORT EXAMINATION</span>
+          <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+        </button>
+      </div>
+
+      <!-- STEP B: ACTIVE QUIZ QUESTION SCREEN -->
+      <div class="hidden flex-col w-full rounded-xl bg-surface-container-low shadow-sm p-space-md border border-outline-variant/40" id="quiz-active-step">
+        <!-- Progress Bar -->
+        <div class="flex flex-col gap-1.5 w-full mb-4">
+          <div class="flex items-center justify-between font-label-code text-[11px]">
+            <span class="text-secondary font-bold" id="quiz-progress-text">QUESTION 01 / 08</span>
+            <span class="text-outline" id="quiz-score-live font-semibold">SCORE: 0</span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+            <div class="h-full bg-secondary transition-all duration-300 w-[12.5%]" id="quiz-progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Question Box -->
+        <div class="flex flex-col gap-3">
+          <span class="font-label-stamp text-[9px] text-secondary uppercase tracking-wider font-bold" id="quiz-question-source">HISTORY ARCHIVE</span>
+          <h3 class="font-headline-sm text-[20px] text-primary font-semibold leading-snug" id="quiz-question-text">
+            Which ancient kingdom is associated with the royal pyramids of Meroë?
+          </h3>
+
+          <!-- Answer Options -->
+          <div class="flex flex-col gap-2.5 mt-2" id="quiz-answers-container">
+            <!-- Buttons injected via JS -->
+          </div>
+
+          <!-- Feedback Box -->
+          <div class="hidden flex-col gap-1 p-3 rounded-lg border text-[13px] font-body-sm mt-2" id="quiz-feedback-box">
+            <div class="flex items-center gap-1.5 font-label-stamp text-[11px] font-bold" id="quiz-feedback-title">
+              <!-- Title -->
+            </div>
+            <p id="quiz-feedback-explanation" class="text-on-surface-variant">
+              <!-- Explanation -->
+            </p>
+          </div>
+
+          <!-- Next Question Button -->
+          <button class="hidden w-full mt-3 py-2.5 rounded-lg bg-primary text-on-primary font-label-stamp text-[11px] tracking-widest uppercase font-bold items-center justify-center gap-1 shadow-sm transition-all" id="quiz-next-btn">
+            <span>NEXT QUESTION</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP C: PASSPORT COMPLETION CERTIFICATE STAMP SCREEN -->
+      <div class="hidden flex-col w-full rounded-xl bg-surface-container-low shadow-lg p-space-md border-2 border-secondary/40 text-center items-center relative overflow-hidden" id="quiz-completion-step">
+        
+        <!-- Passport Stamp Watermark Background -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
+          <span class="material-symbols-outlined text-[260px] text-secondary">verified</span>
+        </div>
+
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/30 mb-2">
+          <span class="material-symbols-outlined text-secondary text-[14px]">auto_awesome</span>
+          <span class="font-label-stamp text-[10px] text-secondary tracking-widest uppercase font-bold">PASSPORT JOURNEY COMPLETE</span>
+        </div>
+
+        <h2 class="font-headline-lg-mobile text-[30px] text-primary tracking-tight leading-tight font-normal mt-1">🎉 CONGRATULATIONS!</h2>
+        
+        <div class="my-3 px-4 py-2 rounded-xl bg-secondary text-surface-bright font-headline-md text-[20px] shadow-sm tracking-wide transform -rotate-1 border border-secondary-fixed">
+          HONORARY SUDANESE CITIZEN 🇸🇩
+        </div>
+
+        <p class="font-body-sm text-[13px] text-on-surface-variant max-w-xs leading-relaxed">
+          Your knowledge of Sudan's ancient pyramids, 5,000-year history, and living cultures has been officially stamped into your digital passport.
+        </p>
+
+        <!-- PHYSICAL STAMP ANIMATION BOX -->
+        <div class="w-full my-4 p-4 rounded-xl bg-surface-container-lowest border-2 border-dashed border-secondary/60 flex flex-col items-center justify-center relative shadow-inner">
+          
+          <div class="animate-stamp-slam flex flex-col items-center">
+            <div class="px-6 py-3 rounded-2xl border-4 border-secondary bg-secondary/15 flex flex-col items-center justify-center shadow-lg transform -rotate-3 border-dashed">
+              <div class="flex items-center gap-2">
+                <span class="text-[22px]">🇸🇩</span>
+                <span class="font-label-stamp text-[15px] text-secondary font-bold tracking-widest uppercase">JOURNEY COMPLETE</span>
+                <span class="material-symbols-outlined text-secondary text-[22px]">verified</span>
+              </div>
+              <div class="font-label-code text-[12px] text-secondary font-bold tracking-wider mt-1" id="certificate-achievement-title">
+                THE NILE KNOWS YOUR NAME
+              </div>
+              <div class="mt-2 inline-flex items-center gap-1 bg-secondary text-surface-bright px-3 py-1 rounded-full shadow">
+                <span class="font-label-stamp text-[10px] tracking-wider uppercase font-bold" id="certificate-score-badge">PASSPORT SCORE: 8 / 8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col gap-2 w-full mt-2">
+          <button class="w-full py-3 rounded-xl bg-secondary text-on-secondary font-label-stamp text-[11px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 shadow hover:bg-secondary/90 transition-all" id="share-score-btn">
+            <span class="material-symbols-outlined text-[16px]">share</span>
+            <span>SHARE MY ACHIEVEMENT</span>
+          </button>
+          
+          <div class="grid grid-cols-2 gap-2">
+            <button class="py-2.5 rounded-lg bg-surface-container-high border border-outline-variant text-primary font-label-stamp text-[10px] tracking-wider uppercase font-bold hover:bg-surface-container transition-all" id="retake-quiz-btn">
+              RETAKE QUIZ
+            </button>
+            <button class="nav-card py-2.5 rounded-lg bg-primary text-on-primary font-label-stamp text-[10px] tracking-wider uppercase font-bold hover:bg-primary/90 transition-all" data-target="explore">
+              EXPLORE AGAIN
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- HANDBOOK INDEX MODAL OVERLAY -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 z-50 bg-primary/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-3 opacity-0 pointer-events-none transition-opacity duration-300" id="handbook-overlay">
+    <div class="w-full max-w-sm bg-background rounded-xl p-space-md shadow-2xl flex flex-col gap-space-sm transform translate-y-12 transition-transform duration-300 border border-outline-variant/60" id="handbook-sheet">
+      <div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/50">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[22px]">menu_book</span>
+          <span class="font-label-stamp text-[10px] text-secondary uppercase tracking-widest font-bold">EXPEDITION INDEX // FOLIO 02</span>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" id="close-handbook-btn">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <h3 class="font-headline-md text-[20px] text-primary font-semibold">Sudan Handbook Index</h3>
+      <p class="font-body-sm text-[12px] text-on-surface-variant">Select your itinerary destination:</p>
+
+      <div class="flex flex-col gap-2 mt-1">
+        <div class="modal-nav-item flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors" data-target="explore">
+          <div class="flex items-center gap-2.5">
+            <span class="font-label-code text-secondary font-bold">01.</span>
+            <span class="font-body-md text-[14px] font-semibold text-primary">Pyramids of Meroë &amp; Nubia</span>
+          </div>
+          <span class="font-label-stamp text-[9px] text-outline uppercase font-bold">DESERT</span>
+        </div>
+
+        <div class="modal-nav-item flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors" data-target="history">
+          <div class="flex items-center gap-2.5">
+            <span class="font-label-code text-secondary font-bold">02.</span>
+            <span class="font-body-md text-[14px] font-semibold text-primary">5,000 Years of Nile History</span>
+          </div>
+          <span class="font-label-stamp text-[9px] text-outline uppercase font-bold">TIMELINE</span>
+        </div>
+
+        <div class="modal-nav-item flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors" data-target="culture">
+          <div class="flex items-center gap-2.5">
+            <span class="font-label-code text-secondary font-bold">03.</span>
+            <span class="font-body-md text-[14px] font-semibold text-primary">Jebena Coffee &amp; Living Ethos</span>
+          </div>
+          <span class="font-label-stamp text-[9px] text-outline uppercase font-bold">CULTURE</span>
+        </div>
+
+        <div class="modal-nav-item flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high cursor-pointer transition-colors" data-target="quiz">
+          <div class="flex items-center gap-2.5">
+            <span class="font-label-code text-secondary font-bold">04.</span>
+            <span class="font-body-md text-[14px] font-semibold text-primary">Sudan Knowledge Test</span>
+          </div>
+          <span class="font-label-stamp text-[9px] text-outline uppercase font-bold">QUIZ</span>
+        </div>
+      </div>
+
+      <div class="pt-space-xs mt-1">
+        <button class="w-full py-2.5 rounded-lg bg-primary text-on-primary font-label-stamp text-[10px] tracking-wider uppercase font-bold flex items-center justify-center gap-2 shadow-sm" id="close-modal-action">
+          <span>CLOSE FOLIO SPREAD</span>
+          <span class="material-symbols-outlined text-[16px]">done</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- BOTTOM FIXED NAVIGATION BAR -->
+  <!-- ========================================== -->
+  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(43,30,22,0.06)] border-t border-outline-variant/40">
+    <div class="flex justify-between items-center h-16 px-space-xs max-w-2xl mx-auto" id="bottom-nav">
+      
+      <a class="nav-tab flex-1 flex flex-col items-center justify-center h-12 rounded-lg transition-all gap-0.5 bg-surface-container-high text-secondary font-semibold" data-tab="home" href="#home">
+        <span class="material-symbols-outlined text-[20px]">menu_book</span>
+        <span class="font-label-code text-[10px] tracking-wider uppercase">HOME</span>
+      </a>
+
+      <a class="nav-tab flex-1 flex flex-col items-center justify-center h-12 rounded-lg text-on-surface-variant hover:text-on-surface transition-all gap-0.5" data-tab="explore" href="#explore">
+        <span class="material-symbols-outlined text-[20px]">explore</span>
+        <span class="font-label-code text-[10px] tracking-wider uppercase">EXPLORE</span>
+      </a>
+
+      <a class="nav-tab flex-1 flex flex-col items-center justify-center h-12 rounded-lg text-on-surface-variant hover:text-on-surface transition-all gap-0.5" data-tab="history" href="#history">
+        <span class="material-symbols-outlined text-[20px]">auto_stories</span>
+        <span class="font-label-code text-[10px] tracking-wider uppercase">HISTORY</span>
+      </a>
+
+      <a class="nav-tab flex-1 flex flex-col items-center justify-center h-12 rounded-lg text-on-surface-variant hover:text-on-surface transition-all gap-0.5" data-tab="culture" href="#culture">
+        <span class="material-symbols-outlined text-[20px]">palette</span>
+        <span class="font-label-code text-[10px] tracking-wider uppercase">CULTURE</span>
+      </a>
+
+      <a class="nav-tab flex-1 flex flex-col items-center justify-center h-12 rounded-lg text-on-surface-variant hover:text-on-surface transition-all gap-0.5" data-tab="quiz" href="#quiz">
+        <span class="material-symbols-outlined text-[20px]">verified</span>
+        <span class="font-label-code text-[10px] tracking-wider uppercase">QUIZ</span>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT ENGINE (QUIZ, ROUTING, STAMP) -->
+  <!-- ========================================== -->
+  <script>
+    (function initSudanApp() {
+
+      /* ----------------------------------------------------
+         1. QUIZ DATA (Derived strictly from website content)
+      ---------------------------------------------------- */
+      const quizQuestions = [
+        {
+          question: "Which ancient kingdom built the royal pyramids of Meroë?",
+          answers: [
+            "Kingdom of Kush",
+            "Roman Empire",
+            "Aksumite Empire",
+            "Ottoman Empire"
+          ],
+          correct: 0,
+          explanation: "Meroë was the royal capital of the Kingdom of Kush in Nubia, home to over 200 steep-sided pyramids.",
+          source: "Explore & History"
+        },
+        {
+          question: "How many ancient pyramids does Sudan have compared to Egypt?",
+          answers: [
+            "Over 250 pyramids — more than double Egypt!",
+            "Fewer than 10 pyramids",
+            "The exact same number",
+            "Only 1 giant pyramid"
+          ],
+          correct: 0,
+          explanation: "Sudan is home to over 250+ ancient pyramids, making it the country with the most pyramids in the world!",
+          source: "Fun Facts Archive"
+        },
+        {
+          question: "Where do the Blue Nile and White Nile meet in Sudan?",
+          answers: [
+            "Khartoum (Al-Mogran)",
+            "Port Sudan",
+            "Jebel Barkal",
+            "Kerma"
+          ],
+          correct: 0,
+          explanation: "The two Nile rivers meet in Khartoum at Al-Mogran to form the main Nile River flowing north.",
+          source: "Explore Waypoints"
+        },
+        {
+          question: "What is the traditional Sudanese clay pot used for brewing spiced coffee called?",
+          answers: [
+            "Jebena (جبنة)",
+            "Ful",
+            "Kisra",
+            "Thoub"
+          ],
+          correct: 0,
+          explanation: "The Jebena is the traditional clay pot used in Sudanese coffee ceremonies, often spiced with ginger and cardamom.",
+          source: "Culture Dispatch"
+        },
+        {
+          question: "Who were the famous warrior queens of ancient Kush who defeated Roman legions?",
+          answers: [
+            "Kandakes (such as Queen Amanirenas)",
+            "Cleopatra",
+            "Nefertiti",
+            "Queen of Sheba"
+          ],
+          correct: 0,
+          explanation: "Kandakes were the powerful queen mothers of Kush. Queen Amanirenas famously led troops and forced Rome into a peace treaty.",
+          source: "History Ledger"
+        },
+        {
+          question: "What is the traditional 4.5-meter colorful wrapped garment worn by Sudanese women?",
+          answers: [
+            "Thoub (ثوب)",
+            "Kaftan",
+            "Kimono",
+            "Sari"
+          ],
+          correct: 0,
+          explanation: "The Sudanese Thoub is an elegant, colorful draped garment celebrating cultural dignity and artistry.",
+          source: "Culture Dispatch"
+        },
+        {
+          question: "What is Sudan's sacred sandstone mountain associated with the god Amun?",
+          answers: [
+            "Jebel Barkal",
+            "Mount Everest",
+            "Mount Kilimanjaro",
+            "Jebel Marra"
+          ],
+          correct: 0,
+          explanation: "Jebel Barkal in Karima was considered a sacred mountain by Kushite pharaohs and is a UNESCO World Heritage site.",
+          source: "Explore Waypoints"
+        },
+        {
+          question: "What year did Sudan officially raise its flag of national independence?",
+          answers: [
+            "1956",
+            "1800",
+            "2000",
+            "1920"
+          ],
+          correct: 0,
+          explanation: "Sudan declared independence on January 1, 1956, raising its national flag.",
+          source: "History Ledger"
+        }
+      ];
+
+      /* ----------------------------------------------------
+         2. TAB NAVIGATION SYSTEM
+      ---------------------------------------------------- */
+      const tabs = document.querySelectorAll('.nav-tab');
+      const contents = document.querySelectorAll('.tab-content');
+      const pageTitle = document.getElementById('page-title');
+
+      const titleMap = {
+        'home': 'Home',
+        'explore': 'Explore Sudan',
+        'history': 'History Ledger',
+        'culture': 'Living Culture',
+        'quiz': 'Passport Examination'
+      };
+
+      function switchTab(tabId) {
+        contents.forEach(c => c.classList.add('hidden'));
+        
+        const targetContent = document.getElementById(`tab-${tabId}`);
+        if (targetContent) {
+          targetContent.classList.remove('hidden');
+        }
+
+        tabs.forEach(t => {
+          if (t.getAttribute('data-tab') === tabId) {
+            t.className = "nav-tab flex-1 flex flex-col items-center justify-center h-12 rounded-lg transition-all gap-0.5 bg-surface-container-high text-secondary font-semibold";
+          } else {
+            t.className = "nav-tab flex-1 flex flex-col items-center justify-center h-12 rounded-lg text-on-surface-variant hover:text-on-surface transition-all gap-0.5";
+          }
+        });
+
+        if (pageTitle && titleMap[tabId]) {
+          pageTitle.textContent = titleMap[tabId];
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Hash change listener
+      function handleHashChange() {
+        const hash = window.location.hash.replace('#', '') || 'home';
+        if (['home', 'explore', 'history', 'culture', 'quiz'].includes(hash)) {
+          switchTab(hash);
+        } else {
+          switchTab('home');
+        }
+      }
+
+      window.addEventListener('hashchange', handleHashChange);
+      handleHashChange();
+
+      // Click listener for internal navigation elements
+      document.body.addEventListener('click', (e) => {
+        const navCard = e.target.closest('.nav-card, .modal-nav-item');
+        if (navCard) {
+          const target = navCard.getAttribute('data-target');
+          if (target) {
+            window.location.hash = target;
+            closeHandbook();
+          }
+        }
+      });
+
+      /* ----------------------------------------------------
+         3. DIGITAL ENTRY STAMP INTERACTION & PERSISTENCE
+      ---------------------------------------------------- */
+      const stampBtn = document.getElementById('stamp-touch-target');
+      const ghostState = document.getElementById('stamp-ghost-state');
+      const imprintState = document.getElementById('stamp-imprint-state');
+      const actionHint = document.getElementById('stamp-action-hint');
+      const reStampBtn = document.getElementById('re-stamp-btn');
+      let isStamped = false;
+
+      function playStampAudio() {
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return;
+          const ctx = new AudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(140, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.15);
+          gain.gain.setValueAtTime(1.0, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.18);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.18);
+        } catch (err) {}
+      }
+
+      function applyStampedUI() {
+        if (ghostState) ghostState.classList.add('hidden');
+        if (imprintState) {
+          imprintState.classList.remove('hidden');
+          imprintState.classList.add('flex');
+        }
+        if (actionHint) actionHint.textContent = 'ENDORSED ✓';
+        if (stampBtn) stampBtn.classList.add('border-secondary', 'bg-secondary/10');
+      }
+
+      function resetStampedUI() {
+        if (imprintState) {
+          imprintState.classList.add('hidden');
+          imprintState.classList.remove('flex');
+        }
+        if (ghostState) ghostState.classList.remove('hidden');
+        if (actionHint) actionHint.textContent = 'TAP TO ENDORSE 🇸🇩';
+        if (stampBtn) stampBtn.classList.remove('bg-secondary/10');
+      }
+
+      // Check localStorage for previous stamp state
+      if (localStorage.getItem('sudan_passport_stamped') === 'true') {
+        isStamped = true;
+        applyStampedUI();
+      }
+
+      function triggerStamp() {
+        if (isStamped) return;
+        isStamped = true;
+        localStorage.setItem('sudan_passport_stamped', 'true');
+        playStampAudio();
+
+        if (stampBtn) {
+          stampBtn.classList.add('scale-90');
+        }
+
+        setTimeout(() => {
+          if (stampBtn) stampBtn.classList.remove('scale-90');
+          applyStampedUI();
+          if (window.navigator && window.navigator.vibrate) {
+            window.navigator.vibrate([40, 80, 50]);
+          }
+        }, 150);
+      }
+
+      if (stampBtn) {
+        stampBtn.addEventListener('click', (e) => {
+          if (e.target.closest('#re-stamp-btn')) return;
+          triggerStamp();
+        });
+      }
+
+      if (reStampBtn) {
+        reStampBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          isStamped = false;
+          localStorage.removeItem('sudan_passport_stamped');
+          resetStampedUI();
+        });
+      }
+
+      /* ----------------------------------------------------
+         4. FUN FACTS REVEAL TOGGLE
+      ---------------------------------------------------- */
+      const facts = [
+        "Sudan is home to over 250+ ancient pyramids — more than double the total number in Egypt!",
+        "The Blue Nile and White Nile meet in Khartoum at Al-Mogran, forming the world's longest river.",
+        "Ancient Kushite queen mothers (*Kandakes*) led armies and defeated Roman legions.",
+        "Sudanese coffee (*Jebena*) is roasted with spices like ginger & cardamom and served with frankincense.",
+        "The ancient city of Kerma in Sudan features the Deffufa — a massive 3,800-year-old mud-brick monument."
+      ];
+      let currentFactIdx = 0;
+
+      const factText = document.getElementById('fact-text');
+      const factNum = document.getElementById('fact-number');
+      const nextFactBtn = document.getElementById('next-fact-btn');
+
+      if (nextFactBtn) {
+        nextFactBtn.addEventListener('click', () => {
+          currentFactIdx = (currentFactIdx + 1) % facts.length;
+          if (factText) factText.textContent = facts[currentFactIdx];
+          if (factNum) factNum.textContent = `CURIOSITY #${String(currentFactIdx + 1).padStart(2, '0')}`;
+        });
+      }
+
+      /* ----------------------------------------------------
+         5. HANDBOOK INDEX MODAL
+      ---------------------------------------------------- */
+      const primaryCard = document.getElementById('primary-expedition-card');
+      const overlay = document.getElementById('handbook-overlay');
+      const sheet = document.getElementById('handbook-sheet');
+      const closeBtn = document.getElementById('close-handbook-btn');
+      const closeAction = document.getElementById('close-modal-action');
+
+      function openHandbook() {
+        if (!overlay || !sheet) return;
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100');
+        sheet.classList.remove('translate-y-12');
+        sheet.classList.add('translate-y-0');
+      }
+
+      function closeHandbook() {
+        if (!overlay || !sheet) return;
+        overlay.classList.remove('opacity-100');
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+        sheet.classList.remove('translate-y-0');
+        sheet.classList.add('translate-y-12');
+      }
+
+      if (primaryCard) primaryCard.addEventListener('click', openHandbook);
+      if (closeBtn) closeBtn.addEventListener('click', closeHandbook);
+      if (closeAction) closeAction.addEventListener('click', closeHandbook);
+      if (overlay) {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) closeHandbook();
+        });
+      }
+
+      /* ----------------------------------------------------
+         6. INTERACTIVE QUIZ ENGINE & CERTIFICATE
+      ---------------------------------------------------- */
+      const quizIntroStep = document.getElementById('quiz-intro-step');
+      const quizActiveStep = document.getElementById('quiz-active-step');
+      const quizCompletionStep = document.getElementById('quiz-completion-step');
+      
+      const startQuizBtn = document.getElementById('start-quiz-btn');
+      const retakeQuizBtn = document.getElementById('retake-quiz-btn');
+      const shareScoreBtn = document.getElementById('share-score-btn');
+
+      const quizProgressText = document.getElementById('quiz-progress-text');
+      const quizScoreLive = document.getElementById('quiz-score-live');
+      const quizProgressBar = document.getElementById('quiz-progress-bar');
+      const quizQuestionSource = document.getElementById('quiz-question-source');
+      const quizQuestionText = document.getElementById('quiz-question-text');
+      const quizAnswersContainer = document.getElementById('quiz-answers-container');
+      const quizFeedbackBox = document.getElementById('quiz-feedback-box');
+      const quizFeedbackTitle = document.getElementById('quiz-feedback-title');
+      const quizFeedbackExplanation = document.getElementById('quiz-feedback-explanation');
+      const quizNextBtn = document.getElementById('quiz-next-btn');
+
+      let currentQuestionIdx = 0;
+      let score = 0;
+      let answered = false;
+
+      function startQuiz() {
+        currentQuestionIdx = 0;
+        score = 0;
+        answered = false;
+
+        quizIntroStep.classList.add('hidden');
+        quizCompletionStep.classList.add('hidden');
+        quizActiveStep.classList.remove('hidden');
+
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        answered = false;
+        const q = quizQuestions[currentQuestionIdx];
+
+        quizProgressText.textContent = `QUESTION ${String(currentQuestionIdx + 1).padStart(2, '0')} / ${String(quizQuestions.length).padStart(2, '0')}`;
+        quizScoreLive.textContent = `SCORE: ${score}`;
+        
+        const pct = ((currentQuestionIdx + 1) / quizQuestions.length) * 100;
+        quizProgressBar.style.width = `${pct}%`;
+
+        quizQuestionSource.textContent = `${q.source.toUpperCase()} ARCHIVE`;
+        quizQuestionText.textContent = q.question;
+
+        quizFeedbackBox.classList.add('hidden');
+        quizNextBtn.classList.add('hidden');
+        quizAnswersContainer.innerHTML = '';
+
+        q.answers.forEach((ans, idx) => {
+          const btn = document.createElement('button');
+          btn.className = "w-full p-3 rounded-xl border-2 border-outline-variant/60 bg-surface-container-lowest font-body-sm text-[14px] text-primary font-medium text-left flex items-center justify-between hover:border-secondary hover:bg-surface-container transition-all active:scale-[0.99]";
+          btn.innerHTML = `
+            <span>${ans}</span>
+            <span class="w-6 h-6 rounded-full border border-outline flex items-center justify-center font-label-code text-[11px] text-outline flex-shrink-0">${String.fromCharCode(65 + idx)}</span>
+          `;
+          btn.addEventListener('click', () => handleAnswer(idx, btn));
+          quizAnswersContainer.appendChild(btn);
+        });
+      }
+
+      function handleAnswer(selectedIdx, clickedBtn) {
+        if (answered) return;
+        answered = true;
+
+        const q = quizQuestions[currentQuestionIdx];
+        const buttons = quizAnswersContainer.querySelectorAll('button');
+
+        buttons.forEach(b => b.disabled = true);
+
+        if (selectedIdx === q.correct) {
+          score++;
+          quizScoreLive.textContent = `SCORE: ${score}`;
+          clickedBtn.className = "w-full p-3 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-950 font-body-sm text-[14px] font-semibold text-left flex items-center justify-between shadow-sm";
+          quizFeedbackTitle.className = "flex items-center gap-1.5 font-label-stamp text-[11px] font-bold text-emerald-700";
+          quizFeedbackTitle.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span> CORRECT ✓`;
+          quizFeedbackBox.className = "flex flex-col gap-1 p-3 rounded-lg border border-emerald-300 bg-emerald-50/80 text-[13px] font-body-sm mt-2";
+        } else {
+          clickedBtn.className = "w-full p-3 rounded-xl border-2 border-rose-500 bg-rose-50 text-rose-950 font-body-sm text-[14px] font-medium text-left flex items-center justify-between";
+          
+          // Highlight correct answer
+          buttons[q.correct].className = "w-full p-3 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-950 font-body-sm text-[14px] font-semibold text-left flex items-center justify-between";
+
+          quizFeedbackTitle.className = "flex items-center gap-1.5 font-label-stamp text-[11px] font-bold text-rose-700";
+          quizFeedbackTitle.innerHTML = `<span class="material-symbols-outlined text-[16px]">cancel</span> NOT QUITE!`;
+          quizFeedbackBox.className = "flex flex-col gap-1 p-3 rounded-lg border border-rose-300 bg-rose-50/80 text-[13px] font-body-sm mt-2";
+        }
+
+        quizFeedbackExplanation.textContent = q.explanation;
+        quizFeedbackBox.classList.remove('hidden');
+        quizNextBtn.classList.remove('hidden');
+        quizNextBtn.classList.add('flex');
+      }
+
+      if (quizNextBtn) {
+        quizNextBtn.addEventListener('click', () => {
+          currentQuestionIdx++;
+          if (currentQuestionIdx < quizQuestions.length) {
+            renderQuestion();
+          } else {
+            showCompletionScreen();
+          }
+        });
+      }
+
+      function showCompletionScreen() {
+        quizActiveStep.classList.add('hidden');
+        quizCompletionStep.classList.remove('hidden');
+        quizCompletionStep.classList.add('flex');
+
+        const titleElem = document.getElementById('certificate-achievement-title');
+        const badgeElem = document.getElementById('certificate-score-badge');
+
+        if (badgeElem) badgeElem.textContent = `PASSPORT SCORE: ${score} / ${quizQuestions.length}`;
+
+        let title = "HONORARY EXPLORER";
+        if (score === 8) title = "THE NILE KNOWS YOUR NAME";
+        else if (score >= 6) title = "CERTIFIED SUDAN EXPLORER";
+        else if (score >= 4) title = "RISING SUDAN SCHOLAR";
+        else title = "CURIOUS TRAVELER";
+
+        if (titleElem) titleElem.textContent = title;
+
+        playStampAudio();
+      }
+
+      if (startQuizBtn) startQuizBtn.addEventListener('click', startQuiz);
+      if (retakeQuizBtn) retakeQuizBtn.addEventListener('click', startQuiz);
+
+      if (shareScoreBtn) {
+        shareScoreBtn.addEventListener('click', () => {
+          const shareText = `I just completed the Sudan Digital Passport journey and scored ${score}/8 on Sudan's history and culture! 🇸🇩`;
+          if (navigator.share) {
+            navigator.share({
+              title: 'Sudan Digital Passport',
+              text: shareText,
+              url: window.location.href
+            }).catch(() => {});
+          } else {
+            navigator.clipboard.writeText(`${shareText} ${window.location.href}`);
+            alert('Score and link copied to clipboard!');
+          }
+        });
+      }
+
+    })();
+  </script>
+
 </body>
 </html>
